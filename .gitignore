@@ -1,5 +1,6 @@
 private/
 test/
+app.db
 
 # Local environment files
 venv/

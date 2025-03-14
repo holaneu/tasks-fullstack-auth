@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
 import sqlite3
 import os
+from dotenv import load_dotenv
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 
@@ -12,8 +13,10 @@ app = Flask(__name__, template_folder="templates", static_folder="static")
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # Setup JWT and Secret Keys
-app.config["SECRET_KEY"] = "987654321"  # Change this to a random secure key
-app.config["JWT_SECRET_KEY"] = "123456789"  # Change this in production
+load_dotenv()
+
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = datetime.timedelta(hours=1)
 jwt = JWTManager(app)
 

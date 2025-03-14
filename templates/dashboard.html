@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="dashboard-header">
+            <nav>
+                <div class="logo">
+                    <a href="{{ url_for('index') }}">Task Manager</a>
+                </div>
+                <div class="user-menu">
+                    <span id="user-name">Loading...</span>
+                    <button id="logout-button" class="btn btn-outline btn-sm">Logout</button>
+                </div>
+            </nav>
+        </header>
+
+        <main class="dashboard-container">
+            <aside class="sidebar">
+                <div class="user-profile">
+                    <h3>Your Profile</h3>
+                    <div id="profile-info">
+                        <p>Loading profile information...</p>
+                    </div>
+                </div>
+
+                <div class="sidebar-menu">
+                    <a href="#" class="sidebar-item active">Dashboard</a>
+                    <a href="#" class="sidebar-item">Tasks</a>
+                    <a href="#" class="sidebar-item">Settings</a>
+                </div>
+            </aside>
+
+            <section class="main-content">
+                <div class="content-header">
+                    <h1>Your Tasks</h1>
+                    <form id="add-task-form" class="task-form">
+                        <input type="text" id="new-task-title" placeholder="Add a new task..." required>
+                        <button type="submit" class="btn btn-primary">Add Task</button>
+                    </form>
+                </div>
+
+                <div class="tasks-container">
+                    <div class="task-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="active">Active</button>
+                        <button class="filter-btn" data-filter="completed">Completed</button>
+                    </div>
+                
+                    <div id="tasks-list" class="tasks-list">
+                        <p class="loading-message">Loading tasks...</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Task Manager. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <div id="notification" class="notification hidden">
+        <p id="notification-message"></p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/api.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/common.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

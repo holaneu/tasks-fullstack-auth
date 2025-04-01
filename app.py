@@ -13,7 +13,8 @@ app = Flask(__name__, template_folder="templates", static_folder="static")
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # Setup JWT and Secret Keys
-load_dotenv()
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = datetime.timedelta(hours=1)
@@ -260,4 +261,4 @@ def delete_task(task_id):
     return jsonify({"message": "Task deleted successfully"}), 200
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port=5002, debug=True)
